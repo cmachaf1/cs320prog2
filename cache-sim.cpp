@@ -3,7 +3,8 @@
 #include <cstddef>
 #include <string>
 #include <sstream>
-#include "DirectMap.h"
+#include "Directmap.h"
+#include "Setassociative.h"
 
 int main(int argc, char* argv[]) {
 	if (argc != 3) {
@@ -14,10 +15,15 @@ int main(int argc, char* argv[]) {
 		unsigned long long addr;
 		std::string type;
 		std::string line;
-		DirectMap * dmc1 = new Directmap(1024);
-		DirectMap * dmc2 = new Directmap(4096);
-		DirectMap * dmc3 = new Directmap(16384);
-		DirectMap * dmc4 = new Directmap(65536);
+		Directmap * dmc1 = new Directmap(1024);
+		Directmap * dmc2 = new Directmap(4096);
+		Directmap * dmc3 = new Directmap(16384);
+		Directmap * dmc4 = new Directmap(32768);
+		Setassociative * set1 = new Setassociative(2);
+		Setassociative * set2 = new Setassociative(4);
+		Setassociative * set3 = new Setassociative(8);
+		Setassociative * set4 = new Setassociative(16);
+		Setassociative * full = new Setassociative(512);
 
 		//Fill with other cache models as implemented//
 	
@@ -31,12 +37,19 @@ int main(int argc, char* argv[]) {
 			dmc2->Cache(addr);
 			dmc3->Cache(addr);
 			dmc4->Cache(addr);
+			set1->Cache(addr);
+			set2->Cache(addr);
+			set3->Cache(addr);
+			set4->Cache(addr);
+			full->Cache(addr);
 
 			//Fill with other cache models as implemented//
 
 		}
 		
-		outfile << dmc1->output() << dmc2->output() << dmc3->output() << dmc4->output();
+		outfile << dmc1->output() << dmc2->output() << dmc3->output() << dmc4->output() << std::endl;
+		outfile << set1->output() << set2->output() << set3->output() << set4->output() << std::endl;
+		outfile << full->output() << std::endl;
 
 			//Fill with other cache models as implemented//
 
