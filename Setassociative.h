@@ -82,7 +82,7 @@ void Setassociative::Evict(long tag, int index) {
 	int replace = 0;
 	for (unsigned int i = 1; i < this->ways; i++) {
 		if (this->lru[index][i] < min) {
-			this->lru[index][i] = min;
+			min = this->lru[index][i];
 			replace = i;
 		}
 	}
